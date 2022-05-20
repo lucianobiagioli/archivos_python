@@ -10,6 +10,7 @@
 # Ejercicios con archivos
 
 import csv
+from ipaddress import summarize_address_range
 
 
 def ej3():
@@ -28,6 +29,16 @@ def ej3():
 
     # Comenzar aquí, recuerde el identado dentro de esta funcion
     
+    
+    cantidad = 0
+    csvfile = open(archivo)
+    stock = list(csv.DictReader(csvfile))
+    for fila in stock:
+        cantidad += int(fila["tornillos"])
+
+    print("La cantidad total de tornillos es: ", cantidad)
+    csvfile.close()
+
 
 
 def ej4():
@@ -47,6 +58,26 @@ def ej4():
     # utilizando "try except", tema que se verá la clase que viene.
 
     # Comenzar aquí, recuerde el identado dentro de esta funcion
+
+    dpto_2 = 0
+    dpto_3 = 0
+
+    csvfile_2 = open(archivo)
+    datos = list(csv.DictReader(csvfile_2))
+    for i in range(len(datos)):
+        try:
+            dato = int(datos[i]["ambientes"])
+        except:
+            print("No se encontraron datos disponibles")
+        if dato == 2:
+            dpto_2 += 1
+        elif dato == 3:
+            dpto_3 += 1
+
+    print("La cantidad de dptos de 2 ambientes es: ", dpto_2)
+    print("La cantidad de dptos de 3 ambientes es: ", dpto_3)
+
+    csvfile_2.close()
 
 
 if __name__ == '__main__':
